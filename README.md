@@ -6,28 +6,32 @@ PtShell é uma linguagem de programação que é uma versão simplificada do Bas
 ### EBNF
 ```
 COMANDO = DECLARACAO_VARIAVEL | CONDICIONAL | LOOP | IMPRIMIR;
-DECLARACAO_VARIAVEL = "declare", IDENTIFICADOR, "=", EXPRESSAO;
-CONDICIONAL = "se", EXPRESSAO, "entao", { COMANDO }, "fim";
-LOOP = "enquanto", EXPRESSAO, "faca", { COMANDO }, "fim";
+DECLARACAO_VARIAVEL = IDENTIFICADOR, EXPRESSAO;
+CONDICIONAL = "se", EXPRESSAO_LOGICA, "entao", { COMANDO }, "fim";
+LOOP = "enquanto", EXPRESSAO_LOGICA, "faca", { COMANDO }, "fim";
 IMPRIMIR = "echo", EXPRESSAO;
-EXPRESSAO = STRING | NUMERO | IDENTIFICADOR;
+EXPRESSAO = STRING | NUMERO | IDENTIFICADOR | EXPRESSAO_LOGICA;
+EXPRESSAO_LOGICA = EXPRESSAO, OPERADOR_LOGICO, EXPRESSAO;
 IDENTIFICADOR = LETRA, { LETRA | DIGITO | "_" };
-STRING = """", { LETRA | DIGITO | ESPACO | "_" }, """";
+STRING = """", { LETRA | DIGITO | ESPACO | "_" | SIMBOLOS }, """";
 NUMERO = DIGITO, { DIGITO };
+OPERADOR_LOGICO = ">" | "<" | "==" | "!=" | ">=" | "<=" | "&&" | "||";
 LETRA = "a" | ... | "z" | "A" | ... | "Z";
 DIGITO = "0" | ... | "9";
+ESPACO = " ";
+SIMBOLOS = "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")";
 ```
 
 ### Exemplo
 
 ```
-declare x = 10
-declare y = 5
+x = 10
+y = 5
 se x > y entao
   echo "x é maior que y"
 fim
 enquanto x > 0 faca
   echo x
-  declare x = x - 1
+  x = x - 1
 fim
 ```
