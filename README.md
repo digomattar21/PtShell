@@ -25,13 +25,13 @@ SIMBOLOS = "!" | "@" | "#" | "$" | "%" | "^" | "&" | "*" | "(" | ")";
 ### Exemplo
 
 ```
-x = 10
-y = 5
+var num x = 10
+var num y = 5
 se x > y entao
-  echo "x é maior que y"
+  echo(x > y)
 fim
-enquanto x > 0 faca
-  echo x
+enquanto x >= 0 faca
+  echo(x)
   x = x - 1
 fim
 ```
